@@ -25,19 +25,19 @@ export default class Artists extends Component {
     return this.state.artists ? (
       <>
         <h1 className="title">All artists</h1>
-        {this.state.artists.map((a, i) => (
+        
 
-          <div key={i}>
-            <Link to={`/artists/${a._id}`}>
+          <div>
+            
             <List
               data={this.state.artists}
               Component={CardArtist}
               cssList="cards"
               cssItem="card artist"
             />
-            </Link>
+           
           </div>
-          ))}
+          
       </>
       ) 
         : (<p>no artist yet...</p>)}

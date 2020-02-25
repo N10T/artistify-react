@@ -25,6 +25,8 @@ export default function Albums() {
 
   return (
     <React.Fragment>
+
+      
       <h1 className="title diy">D.I.Y</h1>
       <p>
         <br />
@@ -52,7 +54,9 @@ export default function Albums() {
         cssList="cards"
         cssItem="card album"
       />
-    : <ReactLoading type={"cubes"} color={"black"} height={667} width={375} />}
+    : 
+    
+    <ReactLoading type={"cubes"} color={"black"} height={667} width={375} />}
     </React.Fragment>
   );
 }

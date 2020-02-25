@@ -55,9 +55,16 @@ router.get("/filtered-artists", (req, res, next) => {
   res.status(200).json({ msg: "@todo" })
 });
 
-router.post("/artists", (req, res) => {
-  res.status(200).json({ msg: "@todo" })
+
+router.post("/artists", (req, res, next) => {
+  console.log("req body",req.body);
+  
+  artistModel
+    .create(req.body)
+    .then(createdArtist => {res.status(200).json(createdArtist)})
+    .catch(err => console.log(err))
 });
+
 
 router.patch("/artists/:id", async (req, res, next) => {
   res.status(200).json({ msg: "@todo" })

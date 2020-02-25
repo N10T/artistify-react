@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 // custom tools
 import APIHandler from "../../api/APIHandler";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 
 // styles
 import "./../../styles/form.css";
@@ -112,9 +112,9 @@ let fd = { name, style, description, isBand, rates }
       </label>
       <input className="input" id="rates" type="number" name="rates" />
 
-      <Button className="btn" onClick={handleSubmit}>
+      <button className="btn" onClick={handleSubmit}>
         ok
-      </Button>
+      </button>
     </form>
   );
 });

@@ -27,9 +27,6 @@ export default function Albums() {
     <React.Fragment>
       <h1 className="title diy">D.I.Y</h1>
       <p>
-        Fetch all Albums from the database.
-        <br />
-        Display a card for each album.
         <br />
         Provide a router {`<Link>`} to="albums/album.id",
         <br />

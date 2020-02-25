@@ -4,6 +4,8 @@ import apiHandler from "../api/APIHandler";
 import CardArtist from "../components/card/CardArtist";
 import List from "../components/List";
 import LabPreview from "../components/LabPreview";
+import ReactLoading from 'react-loading';
+
 // styles
 import "../styles/card.css";
 import { Link } from "react-router-dom";

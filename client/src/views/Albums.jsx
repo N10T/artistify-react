@@ -4,6 +4,9 @@ import apiHandler from "../api/APIHandler";
 import CardAlbum from "../components/card/CardAlbum";
 import List from "../components/List";
 import LabPreview from "../components/LabPreview";
+import ReactLoading from 'react-loading';
+
+
 // styles
 import "../styles/card.css";
 import "../styles/icon-favorite.css";
@@ -14,8 +17,6 @@ export default function Albums() {
 
   useEffect(() => {
     apiHandler.get("/albums").then(apiRes => {
-  console.log(apiRes.data.albums);
-
       setAlbums(apiRes.data.albums);  
     }).catch(err => console.error(err));
 
@@ -48,12 +49,13 @@ export default function Albums() {
 
       <hr />
       <h1 className="title">All albums</h1>
-      <List
+      {albums.length ? <List
         data={albums}
         Component={CardAlbum}
         cssList="cards"
         cssItem="card album"
       />
+    : <ReactLoading type={"cubes"} color={"black"} height={667} width={375} />}
     </React.Fragment>
   );
 }

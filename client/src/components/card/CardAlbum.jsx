@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 // custom tools
 import IconFav from "../icon/IconFavorite";
@@ -6,7 +7,8 @@ import IconFav from "../icon/IconFavorite";
 import "./../../styles/icon-color.css";
 
 export default function CardAlbum({ data }) {
-return <div> 
- <p>{data ? JSON.stringify(data.title) : "wait"}</p>
-  </div>;
+return (
+<div> 
+ <><p>{data.title}</p><img src={data.cover} alt="cover"/>  </>
+</div>);
 }

@@ -55,7 +55,6 @@ export default withRouter(function FormAlbum({
 
   const handleChange = e => {
     e.persist();
-    console.log(e.target.value)
     setState(prevValues => ({
       ...prevValues,
       [e.target.id]: e.target.value

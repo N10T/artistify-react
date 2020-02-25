@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 // custom tools
 import APIHandler from "../../api/APIHandler";
-import LabPreview from "../LabPreview";
+import Button from "@material-ui/core/Button";
+
 // styles
 import "./../../styles/form.css";
-
 
 export default withRouter(function FormArtist({
   mode = "create",
@@ -13,16 +13,21 @@ export default withRouter(function FormArtist({
   history,
   match
 }) {
-  const [
-    { name, style, description, isBand, rates },
-    setState
-  ] = useState({
+  const [{ name, style, description, isBand, rates }, setState] = useState({
     name: "",
-    style: "", 
+    style: "",
     description: "",
-    isBand: true,
+    isBand: "",
     rates: []
   });
+
+  const [styleList, setStyleList] = useState([]);
+
+  useEffect(() => {
+    APIHandler.get(`/styles/`)
+      .then(res => setStyleList(res.data.styles))
+      .catch(err => console.error(err));
+  }, []);
 
   useEffect(() => {
     const initFormData = async () => {
@@ -32,33 +37,22 @@ export default withRouter(function FormArtist({
     };
 
     if (mode === "edit") initFormData();
-
   }, [mode, _id]);
 
   const handleChange = e => {
-    
-    console.log(e.target.name)
-    console.log(e.target.value)
     e.persist();
     setState(prevValues => ({
       ...prevValues,
-      [e.target.name]: e.target.value
+      [e.target.id]: e.target.value
     }));
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const fd = new FormData();
-    fd.append("name", name);
-    fd.append("style", style);
-    fd.append("description", description);
-    fd.append("isBand", isBand);
-    fd.append("rates", rates);
-
-console.log(fd);
-
+let fd = { name, style, description, isBand, rates }
     try {
+
       if (mode === "create") await APIHandler.post("/artists", fd);
       else await APIHandler.patch(`/artists/${match.params.id}`, fd);
       // here, we access history as a destructured props (see the parameters of this component)
@@ -68,7 +62,6 @@ console.log(fd);
       console.error(apiErr);
     }
   };
-
 
   return (
     <form className="form" onSubmit={handleSubmit} onChange={handleChange}>
@@ -83,17 +76,17 @@ console.log(fd);
         defaultValue={name}
       />
 
-
-      <label className="artist" htmlFor="style">
+<label className="album" htmlFor="style">
         style
       </label>
-      <input
-        className="input"
-        id="style"
-        name="style"
-        type="text"
-        defaultValue={style}
-      />
+      <select name="style" id="style">
+        <option value="">Please choose a style</option>
+        {styleList.map((v, i) => (
+          <option key={i} value={v._id}>
+            {v.name}
+          </option>
+        ))}
+      </select>
 
       <label className="artist" htmlFor="description">
         description
@@ -106,39 +99,22 @@ console.log(fd);
         defaultValue={description}
       />
 
-      {/* <p>is band ?</p>
-      <div>
-        <input type="radio" id="yes" name="isBand"/>
-        <label for="yes">Yes</label>
-      </div>
+      <label htmlFor="isBand">is band ?</label>
 
-      <div>
-        <input type="radio" id="no" name="isBand"/>
-        <label for="no">No</label>
-      </div> */}
-
-<label htmlFor="is-band">is band ?</label>
-
-<select name="is-band" id="is-band" defaultValue={isBand}>
-    <option value="">--Please choose an option--</option>
-    <option value={true}>Yes</option>
-    <option value={false}>No</option>
-</select>
-
+      <select name="isBand" id="isBand" defaultValue={isBand}>
+        <option value="">--Please choose an option--</option>
+        <option value={true}>Yes</option>
+        <option value={false}>No</option>
+      </select>
 
       <label className="artist" htmlFor="rates">
         rates
       </label>
-      <input
-        className="input"
-        id="rates"
-        type="number"
-        defaultValue={rates}
-      />
+      <input className="input" id="rates" type="number" name="rates" />
 
-      <button className="btn" onClick={handleSubmit}>ok</button>
+      <Button className="btn" onClick={handleSubmit}>
+        ok
+      </Button>
     </form>
   );
 });
-
-

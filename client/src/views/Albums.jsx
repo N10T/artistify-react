@@ -11,10 +11,13 @@ import "../styles/icon-favorite.css";
 export default function Albums() {
   const [albums, setAlbums] = useState([]);
 
+
   useEffect(() => {
     apiHandler.get("/albums").then(apiRes => {
-      setAlbums(apiRes.data.albums);
-    });
+  console.log(apiRes.data.albums);
+
+      setAlbums(apiRes.data.albums);  
+    }).catch(err => console.error(err));
 
     return () => {};
   }, []);

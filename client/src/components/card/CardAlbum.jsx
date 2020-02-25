@@ -5,6 +5,8 @@ import IconFav from "../icon/IconFavorite";
 // styles
 import "./../../styles/icon-color.css";
 
-export default function CardArtist({ data }) {
-  return <div>@todo</div>;
+export default function CardAlbum({ data }) {
+return <div> 
+ <p>{data ? JSON.stringify(data.title) : "wait"}</p>
+  </div>;
 }

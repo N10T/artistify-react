@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import APIHandler from "../../api/APIHandler";
-import Button from "@material-ui/core/Button";
 
 // custom tools
 import CustomInputFile from "./../icon/IconAvatarAdmin";
@@ -164,9 +163,9 @@ export default withRouter(function FormAlbum({
       </label>
       <input className="input" id="rates" type="number" defaultValue={0} />
 
-      <Button className="btn" variant="contained" onClick={handleSubmit}>
+      <button className="btn" onClick={handleSubmit}>
         ok
-      </Button>
+      </button>
     </form>
   );
 });

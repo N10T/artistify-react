@@ -9,6 +9,7 @@ import "./../../styles/icon-color.css";
 export default function CardAlbum({ data }) {
 return (
 <div> 
- <><p>{data.title}</p><img src={data.cover} alt="cover"/>  </>
+<Link to={`/artists/${data._id}`}>
+ <p>{data.title}</p><img src={data.cover} alt="cover"/>  </Link>
 </div>);
 }

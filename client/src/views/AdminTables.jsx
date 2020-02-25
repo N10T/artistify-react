@@ -74,7 +74,7 @@ export default class AdminTables extends Component {
 
   render() {
     const { headColumns, resources } = this.state;
-
+    console.log(resources);
     return (
       <React.Fragment>
         <h1 className="title">
@@ -95,10 +95,7 @@ export default class AdminTables extends Component {
                 <tr key={i}>
                   <RowTds key={i} data={r} />
                   {/* TODO CODE ONE MODULE FOR ACTION TDS */}
-                  <th
-                    data-ressource-id={r._id}
-                    className="is-clickable"
-                  >
+                  <th data-ressource-id={r._id} className="is-clickable">
                     <Link
                       className="link"
                       to={`/admin/${_endpoint}/edit/${r._id}`}

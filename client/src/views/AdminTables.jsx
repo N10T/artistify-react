@@ -8,6 +8,8 @@ import apiHandler from "../api/APIHandler";
 import { getTableRowsTemplate } from "./../components/admin/AdminTableRows";
 import Head from "./../components/admin/AdminTableHead";
 import IconPlusAdmin from "./../components/icon/IconPlusAdmin";
+import ReactLoading from 'react-loading';
+
 // styles
 import "./../styles/table.css";
 import "./../styles/icon-color.css";
@@ -83,7 +85,7 @@ export default class AdminTables extends Component {
         </h1>
 
         {!resources.length ? (
-          <p>Sorry ! No resources yet :/</p>
+          <p><ReactLoading type={"cubes"} color={"black"} height={300} width={300} /></p>
         ) : (
           <table className="table">
             <thead>

@@ -46,6 +46,7 @@ export default withRouter(function FormAlbum({
       .then(res => setArtistList(res.data.artists))
       .catch(err => console.error(err));
   }, []);
+
   useEffect(() => {
     APIHandler.get(`/labels/`)
       .then(res => setLabelList(res.data.labels))

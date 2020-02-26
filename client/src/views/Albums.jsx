@@ -29,12 +29,7 @@ export default function Albums() {
       
       <h1 className="title diy">D.I.Y</h1>
       <p>
-        <br />
-        Provide a router {`<Link>`} to="albums/album.id",
-        <br />
-        leading to separate Album (details) component.
-        <br />
-        If the albums list is empty, provide a default view.
+
       </p>
       <h1 className="title diy">D.I.Y</h1>
       <p>
@@ -56,7 +51,7 @@ export default function Albums() {
       />
     : 
     
-    <ReactLoading type={"cubes"} color={"black"} height={667} width={375} />}
+    <ReactLoading />}
     </React.Fragment>
   );
 }
